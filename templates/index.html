@@ -4,21 +4,19 @@
   <meta charset="UTF-8">
   <title>ChangeSense - Building Damage Detection</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 30px; }
+    body { font-family: Arial, sans-serif; margin: 30px; background: #f9f9f9; }
     h1 { color: #2c3e50; }
-    form { margin-top: 20px; }
-    input[type=file] { margin-bottom: 10px; }
-    button { padding: 10px 15px; background: #3498db; color: white; border: none; cursor: pointer; }
+    form { margin-top: 20px; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+    input[type=file] { margin-bottom: 15px; }
+    button { padding: 10px 15px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; }
     button:hover { background: #2980b9; }
-    pre { background: #f4f4f4; padding: 15px; border-radius: 5px; }
-    img { max-width: 45%; margin: 10px; border: 2px solid #ddd; border-radius: 8px; }
   </style>
 </head>
 <body>
   <h1>🏠 ChangeSense: Satellite Building Damage Detector</h1>
-  <p>Upload before & after satellite images to analyze structural changes.</p>
+  <p>Upload <strong>before</strong> and <strong>after</strong> satellite images to analyze changes in buildings.</p>
 
-  <form action="/" method="post" enctype="multipart/form-data">
+  <form action="/upload" method="post" enctype="multipart/form-data">
     <label>Before Image:</label><br>
     <input type="file" name="before" accept="image/*" required><br><br>
 
@@ -27,20 +25,5 @@
 
     <button type="submit">Analyze</button>
   </form>
-
-  {% if report %}
-    <h2>📊 Analysis Report</h2>
-    <pre>{{ report | tojson(indent=2) }}</pre>
-
-    <h2>🖼️ Visualization</h2>
-    <div>
-      {% if before_img %}
-        <img src="{{ url_for('static', filename='results/' + before_img) }}" alt="Before">
-      {% endif %}
-      {% if after_img %}
-        <img src="{{ url_for('static', filename='results/' + after_img) }}" alt="After">
-      {% endif %}
-    </div>
-  {% endif %}
 </body>
 </html>
