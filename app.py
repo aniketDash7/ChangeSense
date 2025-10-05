@@ -13,7 +13,7 @@ RESULTS_FOLDER = 'static/results'
 os.makedirs(UPLOAD_FOLDER,exist_ok=True)
 os.makedirs(RESULTS_FOLDER,exist_ok=True)
 
-model = YOLO('YOLOBD-best.pt')
+model = YOLO('yolobest.pt')
 
 def run_inference(image_path,output_name):
     """
